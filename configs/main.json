@@ -1,0 +1,30 @@
+{
+  "github": {
+      "credentials": {
+          "accessToken": "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"
+      },
+      "label": {
+          "template": "Оценка на moodle",
+          "color": "c4c",
+          "colors": []
+      }
+  },
+  "moodle": {
+      "baseUrl": "http://e.moevm.info",
+      "credentials": {
+          "username": "dmitriy1209",
+          "password": "Tiger007%23",
+          "token": "cd49b9a2e3a29d9e32ec54b418a30ca6"
+      }
+  },
+  "googleSheet": {
+      "id": "1-KENToVk8vYABspbj-7gUsojEO9lFMzffeNVVACqPEQ",
+      "headers": {
+          "fio": "ФИО",
+          "email": "Email",
+          "github": "github",
+          "username": "username",
+          "group": "Группа"
+      }
+  }
+}
