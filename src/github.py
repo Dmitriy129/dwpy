@@ -1,13 +1,13 @@
 
 
-from github import Github as GH
+from github import Github 
 import re
 
 
 class GithubClient:
     def __init__(self, accessToken):
         self.accessToken = accessToken
-        self.client = GH(accessToken)
+        self.client = Github(accessToken)
 
     def getDictGitPR(self, repoName, prRegex):
         repo = self.client.get_repo(repoName)
