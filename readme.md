@@ -20,8 +20,8 @@
         "accessToken": "accessToken" /* accessToken for GitHub user */
         },
         "label": { /* config for PullRequest labels */
-            "defaultTemplate": "#Moodle",
-            "defaultColor": "c4c",
+            "defaultTemplate": "#Moodle", /* key word for moodle labels */
+            "defaultColor": "c4c", /* ddefault color label */
             "config": [
                 [
                     [0, 30], /* from 0% to 30% (1% = (raw-min)/(max-min)) */
@@ -29,9 +29,9 @@
                         "color": "ff3d00",
                         "template": "Не сдали ({raw}/{max})", /* template, available variables: raw,min,max */
                         "description": "можно написать, но видно вроде только в настройках"
-                    },
-                    ...
-                ]
+                    }
+                ],
+                ...
             ]
         }
 }
@@ -63,7 +63,7 @@ Response:
 
 ```json
 {
-    "token": "someaccesstoken",
+    "token": "someaccesstoken", /* the value we need */
     "privatetoken": null
 }
 ```
