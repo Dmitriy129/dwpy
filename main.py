@@ -1,11 +1,12 @@
 import json
+import os
 import sys
 
 from src.scripts import script1, script1Mock, script2, script2Mock
 
 mainConfig = json.load(open('./configs/main.json'))
-# run1Config = json.load(open('./configs/run1.json'))
-# run2Config = json.load(open('./configs/run2.json'))
+
+print(os.environ)
 
 availableScripts = {
     "script1": lambda: script1(mainConfig),
