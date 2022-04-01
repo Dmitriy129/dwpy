@@ -1,9 +1,9 @@
 {
     "github": {
         "credentials": {
-            "accessToken": ""
+            "accessToken": "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"
         },
-        "label": {
+        "gradeLabel": {
             "defaultTemplate": "#Moodle",
             "defaultColor": "c4c",
             "config": [
@@ -41,15 +41,40 @@
                     }
                 ]
             ]
+        },
+        "accessLabel": {
+            "defaultTemplate": "#Moodle",
+            "defaultColor": "c4c",
+            "config": [
+                [
+                    [-1, 0],
+                    {
+                        "color": "ff3d00",
+                        "template": "Нет допуска к защите  ({raw}/{max})",
+                        "description": "можно написать, но видно вроде только в настройках",
+                        "comment": "Не решена задача на мудл, необходомо сделать что-то для допуска",
+                        "needToClose": true
+                    }
+                ],
+                [
+                    [0, 100],
+                    {
+                        "color": "2979ff",
+                        "template": "Есть допуск к защите ({raw}/{max})",
+                        "description": "можно написать, но видно вроде только в настройках",
+                        "comment": "Из {max} баллов {raw} набрали вы.\nНа защиту записаться нужно вам, дабы джедая путь продолжить.\n"
+                    }
+                ]
+            ]
         }
     },
     "moodle": {
         "baseUrl": "http://e.moevm.info",
         "credentials": {
-            "username": "",
-            "password": "",
-            "token": ""
-        }
+            "username": "dmitriy1209",
+            "password": "Tiger007%23",
+            "token": "5eb80eacfeef9664c2debf3059885337"
+      }
     },
     "googleSheet": {
         "id": "1-KENToVk8vYABspbj-7gUsojEO9lFMzffeNVVACqPEQ",

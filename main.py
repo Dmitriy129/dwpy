@@ -1,54 +1,54 @@
 import json
+import sys
 
-from src.github import GithubClient
-from src.googleSheets import GoogleSheetClient
-from src.moodle import MoodleClient
-from src.helpers import addGradeLabelToPR, getDictPRGradeInfo
+from src.scripts import script1, script1Mock, script2, script2Mock
 
 mainConfig = json.load(open('./configs/main.json'))
-runConfig = json.load(open('./configs/run.json'))
+run1Config = json.load(open('./configs/run1.json'))
+run2Config = json.load(open('./configs/run2.json'))
 
-# git - ok
-ghclient = GithubClient(mainConfig["github"]["credentials"]["accessToken"])
+availableScripts = {
+    "script1": lambda: script1(mainConfig, run1Config),
+    "script2": lambda: script2(mainConfig, run2Config),
+}
 
+mockedScripts = {
+    "script1": lambda mockNumber: script1Mock(mainConfig, run1Config, mockNumber),
+    "script2": lambda mockNumber: script2Mock(mainConfig, run2Config, mockNumber),
+}
 
-dictGitPR = ghclient.getDictGitPR(
-    runConfig["github"]["repo"],
-    runConfig["github"]["prRegex"])
-
-# google sheets - ok
-gsclient = GoogleSheetClient(mainConfig["googleSheet"]["id"])
-dictFioGit = gsclient.getDictFioGit(
-    mainConfig["googleSheet"]["headers"]["fio"], mainConfig["googleSheet"]["headers"]["github"])
-
-# moodle - ok
-mdclient = MoodleClient(
-    baseUrl=mainConfig["moodle"]["baseUrl"],
-    token=mainConfig["moodle"]["credentials"]["token"])
-
-dictFioGradeInfo = mdclient.getDictFioGradeInfo(
-    runConfig["moodle"]["courseId"], runConfig["moodle"]["quizId"])
+print(sys.argv)
+scriptName = None
+isMock = None
+mockNumber = None
 
 
-# get link pr - grade
-dictPRGradeInfo = getDictPRGradeInfo(dictFioGradeInfo, dictFioGit, dictGitPR)
+if(len(sys.argv) >= 2):
+    scriptName = sys.argv[1]
+    if(len(sys.argv) >= 3):
+        isMock = sys.argv[2] == "mock"
+        if(len(sys.argv) >= 4):
+            mockNumber = sys.argv[3]
 
-# add grade labels to prs
-addGradeLabelToPR(dictPRGradeInfo, mainConfig["github"]["label"])
+selectedScript = None
 
+if(isMock):
+    if scriptName in mockedScripts:
+        selectedScript = mockedScripts[scriptName]
+        if(mockNumber != None and mockNumber.isdigit()):
+            def selectedScript(): return mockedScripts[scriptName](
+                int(mockNumber))
 
+        else:
+            print('Need mock grade number')
+    else:
+        print(f'Script "{scriptName}" not available')
+else:
+    if scriptName in availableScripts:
+        selectedScript = availableScripts[scriptName]
+    else:
+        print(f'Script "{scriptName}" not available')
 
-
-
-# change grade.raw (all)
-# def mockGrade(num):
-#     print(f"start _{num}_")
-#     dictFioGradeInfo = mdclient._getDictFioGradeInfo(
-#         runConfig["moodle"]["courseId"], runConfig["moodle"]["quizId"], num)
-#     dictPRGradeInfo = getDictPRGradeInfo(
-#         dictFioGradeInfo, dictFioGit, dictGitPR)
-#     addGradeLabelToPR(dictPRGradeInfo, mainConfig["github"]["label"])
-#     print(f"end _{num}_")
-# mockGrade(1)
-
-print("all end")
+print(f'Script "{scriptName}" starting...')
+selectedScript()
+print("done")

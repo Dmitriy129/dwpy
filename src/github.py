@@ -17,5 +17,10 @@ class GithubClient:
             if(re.search(prRegex, pull.title) != None):
                 pullsDictionare[pull.user.login] = pull
         return pullsDictionare
+        
+    def getPRById(self, repoName, prId):
+        repo = self.client.get_repo(repoName)
+        pr = repo.get_pull(prId)
+        return pr
 
    

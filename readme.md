@@ -19,7 +19,7 @@
   "credentials": {
         "accessToken": "accessToken" /* accessToken for GitHub user */
         },
-        "label": { /* config for PullRequest labels */
+        "gradeLabel": { /* config for PullRequest labels */
             "defaultTemplate": "#Moodle", /* key word for moodle labels */
             "defaultColor": "c4c", /* ddefault color label */
             "config": [

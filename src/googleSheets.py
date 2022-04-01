@@ -33,3 +33,14 @@ class GoogleSheetClient:
             for valuesStr in tableStrRows[1:]
         }
         return dict
+   
+    def getDictKeyVal(self,  keyHeader, valHeader):
+        csvTable = self.query()
+        tableStrRows = csvTable.split("\r\n")
+        arrTableHeader = tableStrRows[0].split(',')
+        dict = {
+            valuesStr.split(",")[arrTableHeader.index(keyHeader)]:
+            valuesStr.split(",")[arrTableHeader.index(valHeader)]
+            for valuesStr in tableStrRows[1:]
+        }
+        return dict

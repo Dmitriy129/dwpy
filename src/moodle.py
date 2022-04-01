@@ -49,9 +49,9 @@ class MoodleClient:
                 }
         return dictFioGradeInfo
 
-    # def _getDictFioGradeInfo(self, courseid, quizId, raw):
-    #     dictFioGradeInfo = self.getDictFioGradeInfo(courseid, quizId)
-    #     for fio in dictFioGradeInfo:
-    #         dictFioGradeInfo[fio]["raw"] = raw
-    #     return dictFioGradeInfo
+    def _getDictFioGradeInfo(self, courseid, quizId, raw):
+        dictFioGradeInfo = self.getDictFioGradeInfo(courseid, quizId)
+        for fio in dictFioGradeInfo:
+            dictFioGradeInfo[fio]["raw"] = raw
+        return dictFioGradeInfo
 
