@@ -8,11 +8,16 @@ pipeline {
                 sh 'ls'
             }
         }
-        // stage('run script') {
-        //     steps {
-        //         sh 'python jt.py'
-        //     }
-        // }
+        stage('build') {
+            steps {
+                sh 'docker build -t scripts .'
+            }
+        }
+        stage('run mock script1') {
+            steps {
+                sh 'docker run --rm scripts python main.py script1 mock 9'
+            }
+        }
         stage('last stage') {
             steps {
                 echo 'last stage'
