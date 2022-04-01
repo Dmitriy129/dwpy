@@ -8,8 +8,8 @@ def chackParamsScript2():
     if "GITHUB_REPO" not in os.environ:
         print("incorrect param GITHUB_REPO")
         exit()
-    if "GITHUB_PR_ID" not in os.environ:
-        print("incorrect param GITHUB_PR_ID")
+    if "GITHUB_PR_REGEX" not in os.environ:
+        print("incorrect param GITHUB_PR_REGEX")
         exit()
     if "COURSE_ID" not in os.environ:
         print("incorrect param COURSE_ID")
