@@ -12,7 +12,7 @@ pipeline {
     }
     triggers {
         parameterizedCron('''
-            07 21 1 4 * %COURSE_ID=47;CM_ID=1553;GITHUB_REPO="Dmitriy129/dw-test";GITHUB_PR_REGEX="^(\\w*)_(lr1)$"
+            15 21 1 4 * %COURSE_ID=47;CM_ID=1553;GITHUB_REPO="Dmitriy129/dw-test";GITHUB_PR_REGEX="^(\\w*)_(lr1)$"
         ''')
     }
 
@@ -46,6 +46,9 @@ pipeline {
         //     }
         // }
         stage('run script2') {
+             when {
+                triggeredBy 'ParameterizedTimerTriggerCause'
+            }
             steps {
                 withCredentials([string(credentialsId: 'GitHubAccessToken', variable: 'GITHUB_ACCESS_TOKEN'), string(credentialsId: 'MoodleAccessToken', variable: 'MOODLE_ACCESS_TOKEN') ]){
                     sh '''
