@@ -1,4 +1,7 @@
-String cronTime = "21 23 1 4 *"
+String cronTime = '''
+27 23 1 4 *
+29 23 1 4 *
+'''
 
 pipeline {
     agent any
