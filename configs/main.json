@@ -1,7 +1,7 @@
 {
     "github": {
         "credentials": {
-            "accessToken": "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"
+            "accessToken": "!!!deprecated!!! read from env GITHUB_ACCESS_TOKEN"
         },
         "gradeLabel": {
             "defaultTemplate": "#Moodle",
@@ -71,9 +71,7 @@
     "moodle": {
         "baseUrl": "http://e.moevm.info",
         "credentials": {
-            "username": "dmitriy1209",
-            "password": "Tiger007%23",
-            "token": "5eb80eacfeef9664c2debf3059885337"
+            "token": "!!!deprecated!!! read from env MOODLE_ACCESS_TOKEN"
       }
     },
     "googleSheet": {
