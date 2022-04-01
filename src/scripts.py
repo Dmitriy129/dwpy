@@ -3,6 +3,18 @@ import os
 from src.helpers import addGradeLabelToPR, addLabelToPRByGrade, getAllClients, getDictPRGradeInfo, getGradeByPR
 
 
+def chackParamsScript2():
+
+    if "GITHUB_REPO" not in os.environ:
+        raise "incorrect param GITHUB_REPO"
+    if "GITHUB_PR_ID" not in os.environ:
+        raise "incorrect param GITHUB_PR_ID"
+    if "COURSE_ID" not in os.environ:
+        raise "incorrect param COURSE_ID"
+    if "CM_ID" not in os.environ:
+        raise "incorrect param CM_ID"
+
+
 def script1(mainConfig):
     ghclient, gsclient, mdclient = getAllClients(mainConfig)
 
@@ -55,6 +67,7 @@ def script1Mock(mainConfig, mockNumber):
 
 
 def script2(mainConfig):
+    chackParamsScript2()
     ghclient, gsclient, mdclient = getAllClients(mainConfig)
 
     dictGitPR = ghclient.getDictGitPR(
@@ -84,6 +97,7 @@ def script2(mainConfig):
 
 
 def script2Mock(mainConfig,  mockNumber):
+    chackParamsScript2()
     ghclient, gsclient, mdclient = getAllClients(mainConfig)
 
     dictGitPR = ghclient.getDictGitPR(
