@@ -6,17 +6,13 @@ from src.helpers import addGradeLabelToPR, addLabelToPRByGrade, getAllClients, g
 def chackParamsScript2():
 
     if "GITHUB_REPO" not in os.environ:
-        print("incorrect param GITHUB_REPO")
-        exit()
+        raise "incorrect param GITHUB_REPO"
     if "GITHUB_PR_REGEX" not in os.environ:
-        print("incorrect param GITHUB_PR_REGEX")
-        exit()
+        raise "incorrect param GITHUB_PR_REGEX"
     if "COURSE_ID" not in os.environ:
-        print("incorrect param COURSE_ID")
-        exit()
+        raise "incorrect param COURSE_ID"
     if "CM_ID" not in os.environ:
-        print("incorrect param CM_ID")
-        exit()
+        raise "incorrect param CM_ID"
 
 
 def script1(mainConfig):
