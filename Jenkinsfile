@@ -12,7 +12,7 @@ pipeline {
     }
     triggers {
         parameterizedCron('''
-            17 21 1 4 * %COURSE_ID=47;CM_ID=1553;GITHUB_REPO="Dmitriy129/dw-test";GITHUB_PR_REGEX="^(\\w*)_(lr1)$"
+            25 21 1 4 * %COURSE_ID=47;CM_ID=1553;GITHUB_REPO="Dmitriy129/dw-test";GITHUB_PR_REGEX="^(\\w*)_(lr1)$"
         ''')
     }
 
@@ -55,10 +55,10 @@ pipeline {
                     docker run \
                     -e GITHUB_ACCESS_TOKEN=$GITHUB_ACCESS_TOKEN \
                     -e MOODLE_ACCESS_TOKEN=$MOODLE_ACCESS_TOKEN \
-                    -e COURSE_ID=${params.COURSE_ID} \
-                    -e CM_ID=${params.CM_ID} \
-                    -e GITHUB_REPO=${params.GITHUB_REPO} \
-                    -e GITHUB_PR_REGEX=${params.GITHUB_PR_REGEX} \
+                    -e COURSE_ID="${params.COURSE_ID}" \
+                    -e CM_ID="${params.CM_ID}" \
+                    -e GITHUB_REPO="${params.GITHUB_REPO}" \
+                    -e GITHUB_PR_REGEX="${params.GITHUB_PR_REGEX}" \
                     --rm \
                     scripts\
                     python main.py\
