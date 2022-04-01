@@ -1,5 +1,11 @@
+String cronTime = "1 23 1 4 *"
+
 pipeline {
     agent any
+
+    triggers { 
+        cron(cronTime) 
+    }
 
     stages {
         stage('build') {
