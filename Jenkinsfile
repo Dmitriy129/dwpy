@@ -12,7 +12,7 @@ pipeline {
     }
     triggers {
         parameterizedCron('''
-            38 21 1 4 * %COURSE_ID=47;CM_ID=1553;GITHUB_REPO=Dmitriy129/dw-test;GITHUB_PR_REGEX=^(\\w*)_(lr1)$
+            41 21 1 4 * %COURSE_ID=47;CM_ID=1553;GITHUB_REPO=Dmitriy129/dw-test;GITHUB_PR_REGEX=^(\\w*)_(lr1)$
         ''')
     }
 
@@ -62,7 +62,7 @@ pipeline {
                     --rm \
                     scripts\
                     python main.py\
-                    script2 mock 5
+                    script2 mock 8
                     '''
                 }
             }
