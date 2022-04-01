@@ -13,13 +13,13 @@ pipeline {
             }
         }
         stage('run mock script1') {
-            withCredentials([
-                secret(credentialsId: 'GitHubAccessToken', variable: 'GITHUB_ACCESS_TOKEN'),
-                secret(credentialsId: 'MoodleccessToken', variable: 'MOODLE_ACCESS_TOKEN')
-            ]){
             steps {
-                sh 'docker run -e GITHUB_ACCESS_TOKEN=$GITHUB_ACCESS_TOKEN MOODLE_ACCESS_TOKEN=$MOODLE_ACCESS_TOKEN -ti --rm dw python main.py script1 mock 9'
-            }
+                withCredentials([
+                    secret(credentialsId: 'GitHubAccessToken', variable: 'GITHUB_ACCESS_TOKEN'),
+                    secret(credentialsId: 'MoodleccessToken', variable: 'MOODLE_ACCESS_TOKEN')
+                ]){
+                    sh 'docker run -e GITHUB_ACCESS_TOKEN=$GITHUB_ACCESS_TOKEN MOODLE_ACCESS_TOKEN=$MOODLE_ACCESS_TOKEN -ti --rm dw python main.py script1 mock 9'
+                }
             }
         }
         stage('last stage') {
