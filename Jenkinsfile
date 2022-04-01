@@ -2,14 +2,19 @@ pipeline {
     agent any
 
     stages {
-        stage('first_stage') {
+        stage('first stage') {
             steps {
-                echo 'first_stage'
+                echo 'first stage'
             }
         }
-        stage('second_stage') {
+        stage('run script') {
             steps {
-                echo 'second_stage'
+                sh 'python jt.py'
+            }
+        }
+        stage('last stage') {
+            steps {
+                echo 'last stage'
             }
         }
     }
