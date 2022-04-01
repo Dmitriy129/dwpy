@@ -36,7 +36,7 @@ class MoodleClient:
         dictFioGradeInfo = {}
         for user in courseGrades:
             grade = next(
-                (x for x in user["gradeitems"] if x["cmid"] == cmid), None)
+                (x for x in user["gradeitems"] if "cmid" in x and x["cmid"] == cmid), None)
             if(grade and grade["graderaw"] != None):
                 dictFioGradeInfo[unquote(user["userfullname"])] = {
                     "id": grade["id"],
@@ -54,4 +54,3 @@ class MoodleClient:
         for fio in dictFioGradeInfo:
             dictFioGradeInfo[fio]["raw"] = raw
         return dictFioGradeInfo
-

@@ -8,7 +8,7 @@ def script1(mainConfig):
 
     pr = ghclient.getPRById(
         os.environ['GITHUB_REPO'],
-        os.environ['GITHUB_PR_ID']
+        int(os.environ['GITHUB_PR_ID'])
     )
 
     dictGitFio = gsclient.getDictKeyVal(
@@ -17,8 +17,8 @@ def script1(mainConfig):
     )
 
     dictFioGradeInfo = mdclient.getDictFioGradeInfo(
-        os.environ['COURSE_ID'],
-        os.environ['CM_ID']
+        int(os.environ['COURSE_ID']),
+        int(os.environ['CM_ID'])
     )
 
     grade = getGradeByPR(dictFioGradeInfo, dictGitFio, pr)
@@ -31,7 +31,7 @@ def script1Mock(mainConfig, mockNumber):
 
     pr = ghclient.getPRById(
         os.environ['GITHUB_REPO'],
-        os.environ['GITHUB_PR_ID']
+        int(os.environ['GITHUB_PR_ID'])
     )
 
     dictGitFio = gsclient.getDictKeyVal(
@@ -40,8 +40,8 @@ def script1Mock(mainConfig, mockNumber):
     )
 
     dictFioGradeInfo = mdclient._getDictFioGradeInfo(
-        os.environ['COURSE_ID'],
-        os.environ['CM_ID'],
+        int(os.environ['COURSE_ID']),
+        int(os.environ['CM_ID']),
         mockNumber
     )
 
@@ -68,8 +68,8 @@ def script2(mainConfig):
     )
 
     dictFioGradeInfo = mdclient.getDictFioGradeInfo(
-        os.environ['COURSE_ID'],
-        os.environ['CM_ID'],
+        int(os.environ['COURSE_ID']),
+        int(os.environ['CM_ID']),
     )
 
     # get link pr - grade
@@ -92,11 +92,13 @@ def script2Mock(mainConfig,  mockNumber):
     )
 
     dictFioGit = gsclient.getDictFioGit(
-        mainConfig["googleSheet"]["headers"]["fio"], mainConfig["googleSheet"]["headers"]["github"])
+        mainConfig["googleSheet"]["headers"]["fio"],
+        mainConfig["googleSheet"]["headers"]["github"],
+    )
 
     dictFioGradeInfo = mdclient._getDictFioGradeInfo(
-        os.environ['COURSE_ID'],
-        os.environ['CM_ID'],
+        int(os.environ['COURSE_ID']),
+        int(os.environ['CM_ID']),
         mockNumber
     )
 

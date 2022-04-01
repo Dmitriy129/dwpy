@@ -6,7 +6,7 @@ from src.scripts import script1, script1Mock, script2, script2Mock
 
 mainConfig = json.load(open('./configs/main.json'))
 
-print(os.environ)
+print("os.environ", os.environ)
 
 availableScripts = {
     "script1": lambda: script1(mainConfig),

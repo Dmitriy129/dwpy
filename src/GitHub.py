@@ -4,7 +4,6 @@ import re
 
 class GithubClient:
     def __init__(self, accessToken):
-        print("accessToken", accessToken)
         self.accessToken = accessToken
         self.client = Github(accessToken)
 
