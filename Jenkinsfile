@@ -12,7 +12,7 @@ pipeline {
     }
     triggers {
         parameterizedCron('''
-            33 21 1 4 * %COURSE_ID=47;CM_ID=1553;GITHUB_REPO="Dmitriy129/dw-test";GITHUB_PR_REGEX="^(\\w*)_(lr1)$"
+            34 21 1 4 * %COURSE_ID=47;CM_ID=1553;GITHUB_REPO="Dmitriy129/dw-test";GITHUB_PR_REGEX="^(\\w*)_(lr1)$"
         ''')
     }
 
