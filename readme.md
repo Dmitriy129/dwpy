@@ -93,7 +93,7 @@ Response:
 {
     "moodle": {
         "courseId": 47, /* course id */
-        "quizId": 552 /* quiz id (lesson) */
+        "cmid": 1553 /* cmid id (lesson) */
     },
     "github": {
         "repo": "UserName/repo", /* link to github repo */

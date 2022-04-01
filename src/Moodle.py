@@ -31,12 +31,12 @@ class MoodleClient:
         res = rs.get(url, params=params).json()
         return res
 
-    def getDictFioGradeInfo(self, courseid, quizId):
+    def getDictFioGradeInfo(self, courseid, cmid):
         courseGrades = self.getGradesByCourseId(courseid)
         dictFioGradeInfo = {}
         for user in courseGrades:
             grade = next(
-                (x for x in user["gradeitems"] if x["iteminstance"] == quizId), None)
+                (x for x in user["gradeitems"] if x["cmid"] == cmid), None)
             if(grade and grade["graderaw"] != None):
                 dictFioGradeInfo[unquote(user["userfullname"])] = {
                     "id": grade["id"],
@@ -49,8 +49,8 @@ class MoodleClient:
                 }
         return dictFioGradeInfo
 
-    def _getDictFioGradeInfo(self, courseid, quizId, raw):
-        dictFioGradeInfo = self.getDictFioGradeInfo(courseid, quizId)
+    def _getDictFioGradeInfo(self, courseid, cmid, raw):
+        dictFioGradeInfo = self.getDictFioGradeInfo(courseid, cmid)
         for fio in dictFioGradeInfo:
             dictFioGradeInfo[fio]["raw"] = raw
         return dictFioGradeInfo

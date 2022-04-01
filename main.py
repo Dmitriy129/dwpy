@@ -4,17 +4,17 @@ import sys
 from src.scripts import script1, script1Mock, script2, script2Mock
 
 mainConfig = json.load(open('./configs/main.json'))
-run1Config = json.load(open('./configs/run1.json'))
-run2Config = json.load(open('./configs/run2.json'))
+# run1Config = json.load(open('./configs/run1.json'))
+# run2Config = json.load(open('./configs/run2.json'))
 
 availableScripts = {
-    "script1": lambda: script1(mainConfig, run1Config),
-    "script2": lambda: script2(mainConfig, run2Config),
+    "script1": lambda: script1(mainConfig),
+    "script2": lambda: script2(mainConfig),
 }
 
 mockedScripts = {
-    "script1": lambda mockNumber: script1Mock(mainConfig, run1Config, mockNumber),
-    "script2": lambda mockNumber: script2Mock(mainConfig, run2Config, mockNumber),
+    "script1": lambda mockNumber: script1Mock(mainConfig, mockNumber),
+    "script2": lambda mockNumber: script2Mock(mainConfig, mockNumber),
 }
 
 print(sys.argv)

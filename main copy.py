@@ -27,7 +27,7 @@ mdclient = MoodleClient(
     token=mainConfig["moodle"]["credentials"]["token"])
 
 # dictFioGradeInfo = mdclient.getDictFioGradeInfo(
-#     runConfig["moodle"]["courseId"], runConfig["moodle"]["quizId"])
+#     runConfig["moodle"]["courseId"], runConfig["moodle"]["cmid"])
 
 
 # # get link pr - grade
@@ -44,7 +44,7 @@ mdclient = MoodleClient(
 def mockGrade(num):
     print(f"start _{num}_")
     dictFioGradeInfo = mdclient._getDictFioGradeInfo(
-        runConfig["moodle"]["courseId"], runConfig["moodle"]["quizId"], num)
+        runConfig["moodle"]["courseId"], runConfig["moodle"]["cmid"], num)
     dictPRGradeInfo = getDictPRGradeInfo(
         dictFioGradeInfo, dictFioGit, dictGitPR)
     addGradeLabelToPR(dictPRGradeInfo, mainConfig["github"]["gradeLabel"])

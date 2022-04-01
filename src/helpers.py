@@ -96,29 +96,7 @@ def genLabelByGrade(raw, min, max, labelConfig):
 def addGradeLabelToPR(dictPRGradeInfo, labelConfig):
     for pr in dictPRGradeInfo:
         grade = dictPRGradeInfo[pr]
-        name, color, description, comment, _ = genLabelByGrade(
-            raw=grade["raw"],
-            min=grade["min"],
-            max=grade["max"],
-            labelConfig=labelConfig)
-
-        oldLabel = next(
-            (l for l in pr.labels
-             if labelConfig["defaultTemplate"] in l.name), None)
-             
-        if oldLabel:
-            oldLabel.edit(name=name,
-                          color=color,
-                          description=description)
-        else:
-            pr.add_to_labels(name)
-            newLabel = next((l for l in pr.labels if l.name == name), None)
-            if newLabel:
-                newLabel.edit(name=newLabel.name,
-                              color=color,
-                              description=description)
-        if comment:
-            pr.create_issue_comment(comment)
+        addLabelToPRByGrade(pr, grade, labelConfig)
 
 
 def addLabelToPRByGrade(pr, grade, labelConfig):
@@ -130,8 +108,7 @@ def addLabelToPRByGrade(pr, grade, labelConfig):
 
     oldLabel = next(
         (l for l in pr.labels
-         if labelConfig["defaultTemplate"] in l.name),
-        None)
+         if labelConfig["defaultTemplate"] in l.name),        None)
     if oldLabel:
         oldLabel.edit(name=name,
                       color=color,

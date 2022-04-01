@@ -1,83 +1,109 @@
 
+import os
 from src.helpers import addGradeLabelToPR, addLabelToPRByGrade, getAllClients, getDictPRGradeInfo, getGradeByPR
 
 
-def script1(mainConfig, runConfig):
+def script1(mainConfig):
     ghclient, gsclient, mdclient = getAllClients(mainConfig)
 
     pr = ghclient.getPRById(
-        runConfig["github"]["repo"],
-        runConfig["github"]["prId"])
+        os.environ['GITHUB_REPO'],
+        os.environ['GITHUB_PR_ID']
+    )
 
     dictGitFio = gsclient.getDictKeyVal(
         mainConfig["googleSheet"]["headers"]["github"],
-        mainConfig["googleSheet"]["headers"]["fio"])
+        mainConfig["googleSheet"]["headers"]["fio"]
+    )
 
     dictFioGradeInfo = mdclient.getDictFioGradeInfo(
-        runConfig["moodle"]["courseId"],
-        runConfig["moodle"]["quizId"])
+        os.environ['COURSE_ID'],
+        os.environ['CM_ID']
+    )
 
     grade = getGradeByPR(dictFioGradeInfo, dictGitFio, pr)
 
     addLabelToPRByGrade(pr, grade, mainConfig["github"]["accessLabel"])
 
 
-def script1Mock(mainConfig, runConfig, mockNumber):
+def script1Mock(mainConfig, mockNumber):
     ghclient, gsclient, mdclient = getAllClients(mainConfig)
 
     pr = ghclient.getPRById(
-        runConfig["github"]["repo"],
-        runConfig["github"]["prId"])
+        os.environ['GITHUB_REPO'],
+        os.environ['GITHUB_PR_ID']
+    )
 
     dictGitFio = gsclient.getDictKeyVal(
         mainConfig["googleSheet"]["headers"]["github"],
-        mainConfig["googleSheet"]["headers"]["fio"])
+        mainConfig["googleSheet"]["headers"]["fio"]
+    )
 
     dictFioGradeInfo = mdclient._getDictFioGradeInfo(
-        runConfig["moodle"]["courseId"],
-        runConfig["moodle"]["quizId"],
-        mockNumber)
+        os.environ['COURSE_ID'],
+        os.environ['CM_ID'],
+        mockNumber
+    )
 
-    grade = getGradeByPR(dictFioGradeInfo, dictGitFio, pr)
+    grade = getGradeByPR(
+        dictFioGradeInfo,
+        dictGitFio,
+        pr
+    )
 
     addLabelToPRByGrade(pr, grade, mainConfig["github"]["accessLabel"])
 
 
-def script2(mainConfig, runConfig):
+def script2(mainConfig):
     ghclient, gsclient, mdclient = getAllClients(mainConfig)
 
     dictGitPR = ghclient.getDictGitPR(
-        runConfig["github"]["repo"],
-        runConfig["github"]["prRegex"])
+        os.environ['GITHUB_REPO'],
+        os.environ['GITHUB_PR_REGEX']
+    )
 
     dictFioGit = gsclient.getDictFioGit(
-        mainConfig["googleSheet"]["headers"]["fio"], mainConfig["googleSheet"]["headers"]["github"])
+        mainConfig["googleSheet"]["headers"]["fio"],
+        mainConfig["googleSheet"]["headers"]["github"]
+    )
 
     dictFioGradeInfo = mdclient.getDictFioGradeInfo(
-        runConfig["moodle"]["courseId"], runConfig["moodle"]["quizId"])
+        os.environ['COURSE_ID'],
+        os.environ['CM_ID'],
+    )
 
     # get link pr - grade
     dictPRGradeInfo = getDictPRGradeInfo(
-        dictFioGradeInfo, dictFioGit, dictGitPR)
+        dictFioGradeInfo,
+        dictFioGit,
+        dictGitPR
+    )
 
     # add grade labels to prs
     addGradeLabelToPR(dictPRGradeInfo, mainConfig["github"]["gradeLabel"])
 
 
-def script2Mock(mainConfig, runConfig, mockNumber):
+def script2Mock(mainConfig,  mockNumber):
     ghclient, gsclient, mdclient = getAllClients(mainConfig)
 
     dictGitPR = ghclient.getDictGitPR(
-        runConfig["github"]["repo"],
-        runConfig["github"]["prRegex"])
+        os.environ['GITHUB_REPO'],
+        os.environ['GITHUB_PR_REGEX']
+    )
 
     dictFioGit = gsclient.getDictFioGit(
         mainConfig["googleSheet"]["headers"]["fio"], mainConfig["googleSheet"]["headers"]["github"])
 
     dictFioGradeInfo = mdclient._getDictFioGradeInfo(
-        runConfig["moodle"]["courseId"], runConfig["moodle"]["quizId"], mockNumber)
+        os.environ['COURSE_ID'],
+        os.environ['CM_ID'],
+        mockNumber
+    )
 
     dictPRGradeInfo = getDictPRGradeInfo(
-        dictFioGradeInfo, dictFioGit, dictGitPR)
+        dictFioGradeInfo,
+        dictFioGit,
+        dictGitPR
+    )
 
     addGradeLabelToPR(dictPRGradeInfo, mainConfig["github"]["gradeLabel"])
