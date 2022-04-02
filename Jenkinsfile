@@ -11,9 +11,12 @@ pipeline {
       string(name: 'GITHUB_PR_REGEX')
     }
     triggers {
+        // TODO: read from json
+        // example
+        // def data = readJSON file:'message2.json'
         parameterizedCron('''
-            41 21 1 4 * %COURSE_ID=47;CM_ID=1553;GITHUB_REPO=Dmitriy129/dw-test;GITHUB_PR_REGEX=^(\\w*)_(lr1)$
-            */5 * * * * %COURSE_ID=47;CM_ID=1553;GITHUB_REPO=Dmitriy129/dw-test;GITHUB_PR_REGEX=^(\\w*)_(lr1)$
+            # 41 21 1 4 * %COURSE_ID=47;CM_ID=1553;GITHUB_REPO=Dmitriy129/dw-test;GITHUB_PR_REGEX=^(\\w*)_(lr1)$
+            # */5 * * * * %COURSE_ID=47;CM_ID=1553;GITHUB_REPO=Dmitriy129/dw-test;GITHUB_PR_REGEX=^(\\w*)_(lr1)$
         ''')
     }
 
