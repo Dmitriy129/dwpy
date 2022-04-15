@@ -1,17 +1,23 @@
 name: GitHub Actions Demo
 on:
   pull_request:
-    branches: [ feature/github-actions ]
+    branches:  
+      - feature/github-actions
+    types:
+      - opened
+      - reopened
 jobs:
   Explore-GitHub-Actions:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "GITHUB_ACCESS_TOKEN = ' '"
-      - run: echo "MOODLE_ACCESS_TOKEN = ' '"
-      - run: echo "COURSE_ID = ' '"
-      - run: echo "CM_ID = ' '"
+      - run: echo "GITHUB_ACCESS_TOKEN = ${{ github.token }}"
+      - run: echo "MOODLE_ACCESS_TOKEN = 'from file'"
+      - run: echo "COURSE_ID = 'from file'"
+      - run: echo "CM_ID = 'from file'"
       - run: echo "GITHUB_REPO = ${{ github.repository }}"
-      - run: echo "GITHUB_PR_ID = ' '"
+      - run: echo "GITHUB_PR_ID = ${{github.event.pull_request._links.html.href}}"
+
+      - run: echo "repository_owner - ${{ github.repository_owner }}"
       - run: echo "github - ${{ toJSON(github) }}"
 
       - run: echo "🍏 This job's status is ${{ job.status }}."
