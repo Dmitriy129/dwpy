@@ -15,7 +15,7 @@ jobs:
       - run: echo "COURSE_ID = 'from file'"
       - run: echo "CM_ID = 'from file'"
       - run: echo "GITHUB_REPO = ${{ github.repository }}"
-      - run: echo "GITHUB_PR_ID = ${{github.event.pull_request._links.html.href}}"
+      - run: echo "GITHUB_PR_ID = ${{github.event.number}}"
 
       - run: echo "repository_owner - ${{ github.repository_owner }}"
       - run: echo "github - ${{ toJSON(github) }}"
