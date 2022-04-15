@@ -1,10 +1,17 @@
-{
-    "moodle": {
+[
+    {
+        "prRegex": "^\\w*_(lr1)$",
         "courseId": 47,
         "cmid": 1553
     },
-    "github": {
-        "repo": "Dmitriy129/dw-test",
-        "prId": 2
+    {
+        "prRegex": "^\\w*_(lr2)$",
+        "courseId": 47,
+        "cmid": 1553
+    },
+    {
+        "prRegex": "^\\w*_(lr3)$",
+        "courseId": 47,
+        "cmid": 1553
     }
-}
+]
