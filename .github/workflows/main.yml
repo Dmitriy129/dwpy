@@ -20,8 +20,6 @@ jobs:
       - run: docker run \
               -e GITHUB_ACCESS_TOKEN="${{ github.token }}" \
               -e MOODLE_ACCESS_TOKEN=${{ secrets.MOODLE_ACCESS_TOKEN }} \
-              # -e COURSE_ID=47 \
-              # -e CM_ID=1553 \
               -e GITHUB_REPO="${{ github.repository }}" \
               -e GITHUB_PR_ID="${{github.event.number}}" \
               --rm \
