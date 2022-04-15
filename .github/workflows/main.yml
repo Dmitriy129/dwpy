@@ -1,0 +1,17 @@
+name: GitHub Actions Demo
+on:
+  pull_request:
+    branches: [ feature/github-actions ]
+jobs:
+  Explore-GitHub-Actions:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "GITHUB_ACCESS_TOKEN = ' '"
+      - run: echo "MOODLE_ACCESS_TOKEN = ' '"
+      - run: echo "COURSE_ID = ' '"
+      - run: echo "CM_ID = ' '"
+      - run: echo "GITHUB_REPO = ${{ github.repository }}"
+      - run: echo "GITHUB_PR_ID = ' '"
+      - run: echo "github - ${{ github }}"
+
+      - run: echo "🍏 This job's status is ${{ job.status }}."
