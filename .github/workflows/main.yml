@@ -7,16 +7,23 @@ on:
       - opened
       - reopened
 jobs:
-  Explore-GitHub-Actions:
+  build:
     runs-on: ubuntu-latest
     steps:
       - run: echo "GITHUB_ACCESS_TOKEN = ${{ github.token }}"
       - run: echo "MOODLE_ACCESS_TOKEN = 'from file'"
       - run: echo "GITHUB_REPO = ${{ github.repository }}"
       - run: echo "GITHUB_PR_ID = ${{github.event.number}}"
-
+      # 
       - run: echo "pr title - ${{ github.event.pull_request.title }}"
       - run: echo "github - ${{ toJSON(github) }}"
+      # 
+
+      steps:
+      - name: Build docker images
+        run: docker build -t scripts .
+      - name: Run tests
+        run: docker run scripts --rm scripts python main.py script1 mock 3
       - run:
         context: ./
         file: ./Dockerfile
