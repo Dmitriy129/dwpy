@@ -5,16 +5,17 @@ import sys
 from src.scripts import script1, script1Mock, script2, script2Mock
 
 mainConfig = json.load(open('./configs/main.json'))
+moodleRun1Configs = json.load(open('./configs/run1.json'))
 
 print("os.environ", os.environ)
 
 availableScripts = {
-    "script1": lambda: script1(mainConfig),
+    "script1": lambda: script1(mainConfig, moodleRun1Configs),
     "script2": lambda: script2(mainConfig),
 }
 
 mockedScripts = {
-    "script1": lambda mockNumber: script1Mock(mainConfig, mockNumber),
+    "script1": lambda mockNumber: script1Mock(mainConfig, moodleRun1Configs, mockNumber),
     "script2": lambda mockNumber: script2Mock(mainConfig, mockNumber),
 }
 

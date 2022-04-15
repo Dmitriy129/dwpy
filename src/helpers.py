@@ -1,4 +1,5 @@
 import os
+import re
 from src.GitHub import GithubClient
 from src.GoogleSheets import GoogleSheetClient
 from src.Moodle import MoodleClient
@@ -130,3 +131,8 @@ def addLabelToPRsByGrade(dictPRGradeInfo, labelConfig):
     for pr in dictPRGradeInfo:
         grade = dictPRGradeInfo[pr]
         addLabelToPRByGrade(pr, grade, labelConfig)
+
+
+def chooseMoodleRunConfigByPrTitle(moodleRunConfigs, prTitle):
+    return next((moodleRunConfig for moodleRunConfig in moodleRunConfigs if re.search(
+        moodleRunConfig.prRegex, prTitle) != None), None)

@@ -1,6 +1,6 @@
 
 import os
-from src.helpers import addGradeLabelToPR, addLabelToPRByGrade, getAllClients, getDictPRGradeInfo, getGradeByPR
+from src.helpers import addGradeLabelToPR, addLabelToPRByGrade, chooseMoodleRunConfigByPrTitle, getAllClients, getDictPRGradeInfo, getGradeByPR
 
 
 def chackParamsScript2():
@@ -15,8 +15,15 @@ def chackParamsScript2():
         raise "incorrect param CM_ID"
 
 
-def script1(mainConfig):
+def script1(mainConfig, moodleRunConfigs):
     ghclient, gsclient, mdclient = getAllClients(mainConfig)
+    moodleRunConfig = chooseMoodleRunConfigByPrTitle(
+        moodleRunConfigs,
+        os.environ['GITHUB_PR_REGEX']
+    )
+
+    if(not moodleRunConfig):
+        raise "Suitable moodle configuration was not found"
 
     pr = ghclient.getPRById(
         os.environ['GITHUB_REPO'],
@@ -29,8 +36,8 @@ def script1(mainConfig):
     )
 
     dictFioGradeInfo = mdclient.getDictFioGradeInfo(
-        int(os.environ['COURSE_ID']),
-        int(os.environ['CM_ID'])
+        int(moodleRunConfig['courseId']),
+        int(moodleRunConfig['cmId'])
     )
 
     grade = getGradeByPR(dictFioGradeInfo, dictGitFio, pr)
@@ -38,8 +45,15 @@ def script1(mainConfig):
     addLabelToPRByGrade(pr, grade, mainConfig["github"]["accessLabel"])
 
 
-def script1Mock(mainConfig, mockNumber):
+def script1Mock(mainConfig, moodleRunConfigs, mockNumber):
     ghclient, gsclient, mdclient = getAllClients(mainConfig)
+    moodleRunConfig = chooseMoodleRunConfigByPrTitle(
+        moodleRunConfigs,
+        os.environ['GITHUB_PR_REGEX']
+    )
+
+    if(not moodleRunConfig):
+        raise "Suitable moodle configuration was not found"
 
     pr = ghclient.getPRById(
         os.environ['GITHUB_REPO'],
@@ -52,8 +66,8 @@ def script1Mock(mainConfig, mockNumber):
     )
 
     dictFioGradeInfo = mdclient._getDictFioGradeInfo(
-        int(os.environ['COURSE_ID']),
-        int(os.environ['CM_ID']),
+        int(moodleRunConfig['courseId']),
+        int(moodleRunConfig['cmId']),
         mockNumber
     )
 
