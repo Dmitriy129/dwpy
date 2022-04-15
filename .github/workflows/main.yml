@@ -17,7 +17,7 @@ jobs:
       - run: echo "GITHUB_REPO = ${{ github.repository }}"
       - run: echo "GITHUB_PR_ID = ${{github.event.number}}"
 
-      - run: echo "repository_owner - ${{ github.evqnt.base.head.title }}"
+      - run: echo "repository_owner - ${{ github.event.pull_request.title }}"
       - run: echo "github - ${{ toJSON(github) }}"
 
       - run: echo "🍏 This job's status is ${{ job.status }}."
