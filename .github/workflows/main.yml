@@ -17,6 +17,9 @@ jobs:
       - run: echo "pr title - ${{ github.event.pull_request.title }}"
       - run: echo "github - ${{ toJSON(github) }}"
       - 
+        name: Check out code
+        uses: actions/checkout@v2
+      - 
         name: Build docker images
         run: docker build -t scripts .
       - 
