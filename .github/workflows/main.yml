@@ -12,6 +12,6 @@ jobs:
       - run: echo "CM_ID = ' '"
       - run: echo "GITHUB_REPO = ${{ github.repository }}"
       - run: echo "GITHUB_PR_ID = ' '"
-      - run: echo "github - ${{ github }}"
+      - run: echo "github - ${{ toJSON(github) }}"
 
       - run: echo "🍏 This job's status is ${{ job.status }}."
