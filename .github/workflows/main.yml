@@ -17,14 +17,17 @@ jobs:
 
       - run: echo "pr title - ${{ github.event.pull_request.title }}"
       - run: echo "github - ${{ toJSON(github) }}"
-      - run: docker run \
-              -e GITHUB_ACCESS_TOKEN="${{ github.token }}" \
-              -e MOODLE_ACCESS_TOKEN=${{ secrets.MOODLE_ACCESS_TOKEN }} \
-              -e GITHUB_REPO="${{ github.repository }}" \
-              -e GITHUB_PR_ID="${{github.event.number}}" \
-              --rm \
-              scripts\
-              python main.py\
-              script1 mock 3
+      - run:
+        context: ./
+        file: ./Dockerfile
+      # - run: docker run \
+      #         -e GITHUB_ACCESS_TOKEN="${{ github.token }}" \
+      #         -e MOODLE_ACCESS_TOKEN=${{ secrets.MOODLE_ACCESS_TOKEN }} \
+      #         -e GITHUB_REPO="${{ github.repository }}" \
+      #         -e GITHUB_PR_ID="${{github.event.number}}" \
+      #         --rm \
+      #         scripts\
+      #         python main.py\
+      #         script1 mock 3
 
       - run: echo "🍏 This job's status is ${{ job.status }}."
