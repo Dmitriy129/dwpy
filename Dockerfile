@@ -1,7 +1,7 @@
 #Deriving the latest base image
 FROM python:3.8
 
-RUN adduser -D jobuser
+RUN adduser jobuser
 USER jobuser
 
 WORKDIR /home/jobuser
