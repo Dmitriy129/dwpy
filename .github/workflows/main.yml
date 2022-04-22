@@ -9,10 +9,10 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-      env:
-          GITHUB_PR_TITLE: ${{ github.event.pull_request.title }}
-          GITHUB_REPO: ${{ github.repository }}
-          GITHUB_PR_ID: ${{ github.event.number }}
+    env:
+        GITHUB_PR_TITLE: ${{ github.event.pull_request.title }}
+        GITHUB_REPO: ${{ github.repository }}
+        GITHUB_PR_ID: ${{ github.event.number }}
     steps:
       - run: echo "GITHUB_ACCESS_TOKEN = ${{ github.token }}"
       - run: echo "GITHUB_REPO = ${{ github.repository }}"
