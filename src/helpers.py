@@ -135,4 +135,4 @@ def addLabelToPRsByGrade(dictPRGradeInfo, labelConfig):
 
 def chooseMoodleRunConfigByPrTitle(moodleRunConfigs, prTitle):
     return next((moodleRunConfig for moodleRunConfig in moodleRunConfigs if re.search(
-        moodleRunConfig.prRegex, prTitle) != None), None)
+        moodleRunConfig["prRegex"], prTitle) != None), None)
