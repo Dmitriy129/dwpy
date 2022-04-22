@@ -15,7 +15,6 @@ jobs:
       - run: echo "GITHUB_REPO = ${{ github.repository }}"
       - run: echo "GITHUB_PR_ID = ${{github.event.number}}"
       - run: echo "pr title - ${{ github.event.pull_request.title }}"
-      - run: echo "github - ${{ toJSON(github) }}"
       - 
         name: Check out code
         uses: actions/checkout@v2
