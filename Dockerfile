@@ -1,11 +1,20 @@
 #Deriving the latest base image
 FROM python:3.8
 
-WORKDIR /usr/app/src
+RUN adduser -D jobuser
+USER jobuser
 
-COPY . ./
+WORKDIR /home/jobuser
 
-RUN pip install -r requirements.txt
+COPY --chown=jobuser:jobuser requirements.txt requirements.txt
+RUN pip install --user -r requirements.txt
+
+ENV PATH="/home/jobuser/.local/bin:${PATH}"
+
+COPY --chown=jobuser:jobuser . .
+# COPY . ./
+
+# RUN pip install -r requirements.txt
 
 EXPOSE 80
 

@@ -50,7 +50,7 @@ pipeline {
         //     }
         // }
         stage('run script2') {
-             when {
+            when {
                 triggeredBy 'ParameterizedTimerTriggerCause'
             }
             steps {
