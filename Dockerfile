@@ -1,7 +1,8 @@
 #Deriving the latest base image
 FROM python:3.8
 
-RUN adduser jobuser
+# RUN adduser jobuser
+RUN useradd -ms /bin/bash jobuser
 USER jobuser
 
 WORKDIR /home/jobuser
