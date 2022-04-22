@@ -19,7 +19,7 @@ def script1(mainConfig, moodleRunConfigs):
     ghclient, gsclient, mdclient = getAllClients(mainConfig)
     moodleRunConfig = chooseMoodleRunConfigByPrTitle(
         moodleRunConfigs,
-        os.environ['GITHUB_PR_REGEX']
+        os.environ['GITHUB_PR_TITLE']
     )
 
     if(not moodleRunConfig):
@@ -49,7 +49,7 @@ def script1Mock(mainConfig, moodleRunConfigs, mockNumber):
     ghclient, gsclient, mdclient = getAllClients(mainConfig)
     moodleRunConfig = chooseMoodleRunConfigByPrTitle(
         moodleRunConfigs,
-        os.environ['GITHUB_PR_REGEX']
+        os.environ['GITHUB_PR_TITLE']
     )
 
     if(not moodleRunConfig):

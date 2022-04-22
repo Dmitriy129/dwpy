@@ -22,7 +22,11 @@ jobs:
         name: Build docker images
         run: docker build -t scripts .
       - 
-        name: Run tests
+        name: Run script
+        env:
+          GITHUB_PR_TITLE: ${{ github.event.pull_request.title }}
+          GITHUB_REPO: ${{ github.repository }}
+          GITHUB_PR_ID: ${{ github.event.number }}
         run: docker run scripts python main.py script1 mock 3
 
       - run: echo "🍏 This job's status is ${{ job.status }}."
