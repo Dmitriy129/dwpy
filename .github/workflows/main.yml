@@ -23,6 +23,6 @@ jobs:
         run: docker build -t scripts .
       - 
         name: Run tests
-        run: docker run scripts --rm scripts python main.py script1 mock 3
+        run: docker run scripts python main.py script1 mock 3
 
       - run: echo "🍏 This job's status is ${{ job.status }}."
