@@ -7,10 +7,11 @@ USER jobuser
 
 WORKDIR /home/jobuser
 
+ENV PATH "$PATH:/home/jobuser/.local/bin"
+
 COPY --chown=jobuser:jobuser requirements.txt requirements.txt
 RUN pip install --user -r requirements.txt
 
-ENV PATH "$PATH:/home/jobuser/.local/bin"
 
 COPY --chown=jobuser:jobuser . .
 # COPY . ./
