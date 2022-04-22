@@ -46,6 +46,7 @@ def script1(mainConfig, moodleRunConfigs):
 
 
 def script1Mock(mainConfig, moodleRunConfigs, mockNumber):
+    print("moodleRunConfigs", moodleRunConfigs)
     ghclient, gsclient, mdclient = getAllClients(mainConfig)
     moodleRunConfig = chooseMoodleRunConfigByPrTitle(
         moodleRunConfigs,
