@@ -1,12 +1,12 @@
 name: script2
 on:
   schedule:
-    - cron:  '*/2 * * * *'
-    inputs:
-      an_input:
-        description: 'Input?'
-        required: true
-        default: 'Foo'
+    - cron: '*/2 * * * *'
+    # inputs:
+    #   an_input:
+    #     description: 'Input?'
+    #     required: true
+    #     default: 'Foo'
 jobs:
   build:
     runs-on: ubuntu-latest
