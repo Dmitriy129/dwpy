@@ -6,10 +6,10 @@ on:
     inputs:
       aaa:
         required: false 
-        type: boolean
+        type: string
       bbb:
         required: false 
-        type: boolean
+        type: string
 jobs:
   build:
     runs-on: ubuntu-latest
