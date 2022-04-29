@@ -1,4 +1,4 @@
-name: Action PR opened
+name: script2
 on:
   schedule:
     - cron:  '*/2 * * * *'

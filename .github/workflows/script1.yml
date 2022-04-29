@@ -1,4 +1,4 @@
-name: Action PR opened
+name: script1
 on:
   pull_request:
     branches:  
