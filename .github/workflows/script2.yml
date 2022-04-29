@@ -1,8 +1,8 @@
 name: script2
 on:
   schedule:
-    - cron: '* * * * *'
-    - cron: '*/5 * * * *'
+    - cron: '*/1 * * * *'
+    - cron: '*/2 * * * *'
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -20,6 +20,6 @@ jobs:
         run: docker build -t scripts .
       - 
         name: Run script
-        run: docker run -e COURSE_ID=47 -e CM_ID=1553 -e GITHUB_REPO="${{ github.repository }}" -e GITHUB_PR_REGEX="^(\\w*)_(lr1)$" -e GITHUB_ACCESS_TOKEN="${{ github.token }}" -e MOODLE_ACCESS_TOKEN="${{ secrets.MOODLE_ACCESS_TOKEN }}" scripts python main.py script2 mock 6
+        run: docker run -e COURSE_ID=47 -e CM_ID=1553 -e GITHUB_REPO="${{ github.repository }}" -e GITHUB_PR_REGEX="^(\\w*)_(lr1)$" -e GITHUB_ACCESS_TOKEN="${{ github.token }}" -e MOODLE_ACCESS_TOKEN="${{ secrets.MOODLE_ACCESS_TOKEN }}" scripts python main.py script2 mock 1
 
       - run: echo "🍏 This job's status is ${{ job.status }}."
