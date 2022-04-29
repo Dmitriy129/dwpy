@@ -1,4 +1,4 @@
-name: script2
+name: scr 2 
 on:
   schedule:
     - cron: '*/1 * * * *'
