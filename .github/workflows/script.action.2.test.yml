@@ -34,7 +34,7 @@ jobs:
       - 
         name: check env 3
         if: "${{ env.COURSE_ID == '' }}"
-        uses: styfle/cancel-workflow-action
+        uses: styfle/cancel-workflow-action@0.9.1
       - 
         name: Check out code
         uses: actions/checkout@v2
