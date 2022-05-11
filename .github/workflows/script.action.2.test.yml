@@ -33,7 +33,7 @@ jobs:
           echo "GITHUB_PR_REGEX='^(\\w*)_(lr1)$'" >> "$GITHUB_ENV"
       - 
         name: check env 3
-        if: "${{ env.COURSE_ID == '' }}"
+        if: "${{ env.COURSE_ID == '' }}" and failure()
         uses: styfle/cancel-workflow-action@0.9.1
       - 
         name: Check out code
