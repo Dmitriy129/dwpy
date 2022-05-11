@@ -32,8 +32,11 @@ jobs:
           echo "CM_ID=1553" >> "$GITHUB_ENV"
           echo "GITHUB_PR_REGEX='^(\\w*)_(lr1)$'" >> "$GITHUB_ENV"
       - 
-        exit: failure()
+        name: check env
         if: ${{env.COURSE_ID}}==""
+        run: |
+          env
+          exit
       - 
         name: Check out code
         uses: actions/checkout@v2
