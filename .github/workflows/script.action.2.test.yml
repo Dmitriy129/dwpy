@@ -19,7 +19,10 @@ jobs:
     steps:
       - name: cron 1
         if: github.event.schedule == '*/2 * * * *'
-        run: echo "COURSE_ID=47 CM_ID=1553 GITHUB_PR_REGEX='^(\\w*)_(lr1)$'" >> "$GITHUB_ENV"
+        run: |
+          echo "COURSE_ID=47" >> "$GITHUB_ENV"
+          echo "CM_ID=1553" >> "$GITHUB_ENV"
+          echo "GITHUB_PR_REGEX='^(\\w*)_(lr1)$'" >> "$GITHUB_ENV"
 
       - name: check GITHUB_ENV
         run: echo "GITHUB_ENV ${{$GITHUB_ENV}}"
