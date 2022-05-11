@@ -32,25 +32,9 @@ jobs:
           echo "CM_ID=1553" >> "$GITHUB_ENV"
           echo "GITHUB_PR_REGEX='^(\\w*)_(lr1)$'" >> "$GITHUB_ENV"
       - 
-        name: check env 1
-        if: ${{env.COURSE_ID}} == ""
-        run: echo "${{env.COURSE_ID}} "
-      - 
-        name: check env 2
-        if: ${{env.COURSE_ID}} == null
-        run: exit 0
-      - 
-        name: check env 2.5
-        if: ${{env.COURSE_ID}} != null
-        run: exit 0
-      - 
         name: check env 3
         if: "${{ env.COURSE_ID == '' }}"
-        run: exit 0
-      - 
-        name: check env 4
-        if: "${{ env.COURSE_ID != '' }}"
-        run: exit 0
+        uses: styfle/cancel-workflow-action
       - 
         name: Check out code
         uses: actions/checkout@v2
