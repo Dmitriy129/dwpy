@@ -40,6 +40,10 @@ jobs:
         if: ${{env.COURSE_ID}} == null
         run: exit 0
       - 
+        name: check env 2.5
+        if: ${{env.COURSE_ID}} != null
+        run: exit 0
+      - 
         name: check env 3
         if: "${{ env.COURSE_ID == '' }}"
         run: exit 0
