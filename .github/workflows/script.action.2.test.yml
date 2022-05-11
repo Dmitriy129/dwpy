@@ -5,13 +5,13 @@ on:
   workflow_dispatch:
     inputs:
       COURSE_ID:
-        # required: true 
+        required: true 
         type: string
       CM_ID:
-        # required: true 
+        required: true 
         type: string
       GITHUB_PR_REGEX:
-        # required: true 
+        required: true 
         type: string
 jobs:
   build:
