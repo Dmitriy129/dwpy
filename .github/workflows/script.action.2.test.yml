@@ -34,7 +34,7 @@ jobs:
       - 
         name: check env 1
         if: ${{env.COURSE_ID}} == ""
-        run: echo "  ${{env.COURSE_ID}} "
+        run: echo "${{env.COURSE_ID}} "
       - 
         name: check env 2
         if: ${{env.COURSE_ID}} == null
