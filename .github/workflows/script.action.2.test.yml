@@ -30,6 +30,12 @@ jobs:
       - name: check env
         run: env
 
+      - name: check inputs
+        run: inputs
+
+      - name: check env
+        run: env
+
       - 
         name: Check out code
         uses: actions/checkout@v2
