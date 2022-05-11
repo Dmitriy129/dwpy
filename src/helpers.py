@@ -97,10 +97,10 @@ def genLabelByGrade(raw, min, max, labelConfig):
 def addGradeLabelToPR(dictPRGradeInfo, labelConfig):
     for pr in dictPRGradeInfo:
         grade = dictPRGradeInfo[pr]
-        addLabelToPRByGrade(pr, grade, labelConfig)
+        addGradeLabelToPRByGrade(pr, grade, labelConfig)
 
 
-def addLabelToPRByGrade(pr, grade, labelConfig):
+def addGradeLabelToPRByGrade(pr, grade, labelConfig):
     name, color, description, comment, needToClose = genLabelByGrade(
         raw=grade["raw"],
         min=grade["min"],
@@ -130,7 +130,7 @@ def addLabelToPRByGrade(pr, grade, labelConfig):
 def addLabelToPRsByGrade(dictPRGradeInfo, labelConfig):
     for pr in dictPRGradeInfo:
         grade = dictPRGradeInfo[pr]
-        addLabelToPRByGrade(pr, grade, labelConfig)
+        addGradeLabelToPRByGrade(pr, grade, labelConfig)
 
 
 def chooseMoodleRunConfigByPrTitle(moodleRunConfigs, prTitle):

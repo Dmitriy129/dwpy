@@ -1,9 +1,9 @@
 
 import os
-from src.helpers import addGradeLabelToPR, addLabelToPRByGrade, chooseMoodleRunConfigByPrTitle, getAllClients, getDictPRGradeInfo, getGradeByPR
+from src.helpers import addGradeLabelToPR, addGradeLabelToPRByGrade, chooseMoodleRunConfigByPrTitle, getAllClients, getDictPRGradeInfo, getGradeByPR
 
 
-def chackParamsScript2():
+def checkParamsScript2():
 
     if "GITHUB_REPO" not in os.environ:
         raise "incorrect param GITHUB_REPO"
@@ -42,7 +42,7 @@ def script1(mainConfig, moodleRunConfigs):
 
     grade = getGradeByPR(dictFioGradeInfo, dictGitFio, pr)
 
-    addLabelToPRByGrade(pr, grade, mainConfig["github"]["accessLabel"])
+    addGradeLabelToPRByGrade(pr, grade, mainConfig["github"]["accessLabel"])
 
 
 def script1Mock(mainConfig, moodleRunConfigs, mockNumber):
@@ -77,11 +77,11 @@ def script1Mock(mainConfig, moodleRunConfigs, mockNumber):
         pr
     )
 
-    addLabelToPRByGrade(pr, grade, mainConfig["github"]["accessLabel"])
+    addGradeLabelToPRByGrade(pr, grade, mainConfig["github"]["accessLabel"])
 
 
 def script2(mainConfig):
-    chackParamsScript2()
+    checkParamsScript2()
     ghclient, gsclient, mdclient = getAllClients(mainConfig)
 
     dictGitPR = ghclient.getDictGitPR(
@@ -111,7 +111,7 @@ def script2(mainConfig):
 
 
 def script2Mock(mainConfig,  mockNumber):
-    chackParamsScript2()
+    checkParamsScript2()
     ghclient, gsclient, mdclient = getAllClients(mainConfig)
 
     dictGitPR = ghclient.getDictGitPR(
