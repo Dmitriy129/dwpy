@@ -32,8 +32,20 @@ jobs:
           echo "CM_ID=1553" >> "$GITHUB_ENV"
           echo "GITHUB_PR_REGEX='^(\\w*)_(lr1)$'" >> "$GITHUB_ENV"
       - 
-        name: check env
-        if: ${{env.COURSE_ID}}==""
+        name: check env 1
+        if: ${{env.COURSE_ID}} == ""
+        run: |
+          env
+          exit 0
+      - 
+        name: check env 2
+        if: ${{env.COURSE_ID}} = ""
+        run: |
+          env
+          exit 0
+      - 
+        name: check env 3
+        if: ${{env.COURSE_ID}} != ""
         run: |
           env
           exit 0
