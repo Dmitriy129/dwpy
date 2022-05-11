@@ -17,6 +17,12 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - name: workflow_dispatch
+        if: github.event_name == 'workflow_dispatch'
+        run: |
+          echo "COURSE_ID=${{github.event.inputs.COURSE_ID}}" >> "$GITHUB_ENV"
+          echo "CM_ID=${{github.event.inputs.CM_ID}}" >> "$GITHUB_ENV"
+          echo "GITHUB_PR_REGEX=${{github.event.inputs.GITHUB_PR_REGEX}}" >> "$GITHUB_ENV"
       - name: cron 1
         if: github.event.schedule == '*/2 * * * *'
         run: |
@@ -32,10 +38,6 @@ jobs:
 
       - name: check inputs
         run: echo "${{github.event.inputs.COURSE_ID}}"
-
-      - name: check env
-        run: env
-
       - 
         name: Check out code
         uses: actions/checkout@v2
