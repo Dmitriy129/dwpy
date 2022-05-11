@@ -31,7 +31,7 @@ jobs:
         run: env
 
       - name: check inputs
-        run: github.event.inputs
+        run: echo "${{github.event.inputs.COURSE_ID}}"
 
       - name: check env
         run: env
