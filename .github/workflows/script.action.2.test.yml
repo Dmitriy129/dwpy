@@ -28,7 +28,7 @@ jobs:
       #   run: echo "GITHUB_ENV ${{$GITHUB_ENV.$COURSE_ID}}"
 
       - name: check env
-        run: echo "env ${{env}}"
+        run: env
 
       - 
         name: Check out code
