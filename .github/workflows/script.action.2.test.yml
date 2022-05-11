@@ -4,11 +4,14 @@ on:
     - cron: '*/2 * * * *'
   workflow_dispatch:
     inputs:
-      aaa:
-        required: false 
+      COURSE_ID:
+        required: true 
         type: string
-      bbb:
-        required: false 
+      CM_ID:
+        required: true 
+        type: string
+      GITHUB_PR_REGEX:
+        required: true 
         type: string
 jobs:
   build:
@@ -16,10 +19,9 @@ jobs:
     steps:
       - name: cron 1
         if: github.event.schedule == '*/2 * * * *'
-        env:
-          COURSE_ID: 47
-          CM_ID: 1553
-          GITHUB_PR_REGEX: "^(\\w*)_(lr1)$"
+        run: echo "COURSE_ID=47" >> "$GITHUB_ENV"
+        run: echo "CM_ID=1553" >> "$GITHUB_ENV"
+        run: echo "GITHUB_PR_REGEX='^(\\w*)_(lr1)$'" >> "$GITHUB_ENV"
       - 
         name: Check out code
         uses: actions/checkout@v2
