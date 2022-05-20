@@ -1,4 +1,4 @@
-name: scr 2 test 
+name: scr 2 
 on:
   schedule:
     - cron: '*/15 * * * *'
