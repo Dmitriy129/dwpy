@@ -1,0 +1,48 @@
+name: scr 2 test 
+on:
+  schedule:
+    - cron: '*/15 * * * *'
+  workflow_dispatch:
+    inputs:
+      COURSE_ID:
+        required: true 
+        type: string
+      CM_ID:
+        required: true 
+        type: string
+      GITHUB_PR_REGEX:
+        required: true 
+        type: string
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - 
+        name: workflow_dispatch
+        if: github.event_name == 'workflow_dispatch'
+        run: |
+          echo "COURSE_ID=${{github.event.inputs.COURSE_ID}}" >> "$GITHUB_ENV"
+          echo "CM_ID=${{github.event.inputs.CM_ID}}" >> "$GITHUB_ENV"
+          echo "GITHUB_PR_REGEX=${{github.event.inputs.GITHUB_PR_REGEX}}" >> "$GITHUB_ENV"
+      - 
+        name: cron 1
+        if: github.event.schedule == '*/5 * * * *'
+        run: |
+          echo "COURSE_ID=47" >> "$GITHUB_ENV"
+          echo "CM_ID=1553" >> "$GITHUB_ENV"
+          echo "GITHUB_PR_REGEX='^(\\w*)_(lr1)$'" >> "$GITHUB_ENV"
+      - 
+        name: Check env
+        uses: andymckay/cancel-action@0.2
+        if: "${{ env.COURSE_ID == '' || env.CM_ID == '' || env.GITHUB_PR_REGEX == '' }}"
+      - 
+        name: Check out code
+        uses: actions/checkout@v2
+      - 
+        name: Build docker images
+        run: docker build -t scripts .
+      - 
+        name: Run script
+        run: docker run -e COURSE_ID="${{env.COURSE_ID}}" -e CM_ID="${{env.CM_ID}}" -e GITHUB_REPO="${{ github.repository }}" -e GITHUB_PR_REGEX="${{env.GITHUB_PR_REGEX}}" -e GITHUB_ACCESS_TOKEN="${{ github.token }}" -e MOODLE_ACCESS_TOKEN="${{ secrets.MOODLE_ACCESS_TOKEN }}" --rm fox1209/gm_scripts:1.0.0  python main.py script2 mock 4
+
+      - run: echo "🍏 This job's status is ${{ job.status }}."
