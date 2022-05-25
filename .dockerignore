@@ -1,8 +1,9 @@
+.git
+.github
+.vscode
+configs
+waste
+.gitignore
 Dockerfile
 Jenkinsfile
-.vscode
-.git
-.gitignore
-.configs
-waste
 __pycache__
