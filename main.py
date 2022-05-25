@@ -5,7 +5,7 @@ import sys
 from src.scripts import script1, script1Mock, script2, script2Mock
 
 mainConfig = json.load(open('./configs/main.json'))
-moodleRun1Configs = json.load(open('./configs/run1.json'))
+moodleRun1Configs = json.load(open('./configs/script1.json'))
 
 print("os.environ", os.environ)
 

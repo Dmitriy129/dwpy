@@ -3,5 +3,6 @@ Jenkinsfile
 .vscode
 .git
 .gitignore
+.configs
 waste
 __pycache__
